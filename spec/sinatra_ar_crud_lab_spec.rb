@@ -2,50 +2,50 @@ require 'spec_helper'
 
 describe "Blog Post App" do
 
-  let(:post1) { Post.create(:name => "Hello World", :content => "This is my first blog post!!!")}
-  let(:post2) { Post.create(:name => "second post", :content => "i'm a really good blogger" )}
+  # let(:post1) { Post.create(:name => "Hello World", :content => "This is my first blog post!!!")}
+  # let(:post2) { Post.create(:name => "second post", :content => "i'm a really good blogger" )}
 
-  describe "Create Action" do
+  # describe "Create Action" do
 
-    it "creates a new blog post" do
-      visit '/posts/new'
+  #   it "creates a new blog post" do
+  #     visit '/posts/new'
 
-      fill_in :name, :with => "my favorite blog post"
-      fill_in :content, :with => "blogging!!!!"
+  #     fill_in :name, :with => "my favorite blog post"
+  #     fill_in :content, :with => "blogging!!!!"
 
-      click_button 'submit'
+  #     click_button 'submit'
 
-      expect(Post.all.count).to eq(3)
-      expect(Post.last.name).to eq("my favorite blog post")
-    end
+  #     expect(Post.all.count).to eq(3)
+  #     expect(Post.last.name).to eq("my favorite blog post")
+  #   end
 
-    it "redirects to '/posts'" do
-      visit '/posts/new'
+  #   it "redirects to '/posts'" do
+  #     visit '/posts/new'
 
-      fill_in :name, :with => "a post"
-      fill_in :content, :with => "blog blog blog blog blog"
+  #     fill_in :name, :with => "a post"
+  #     fill_in :content, :with => "blog blog blog blog blog"
 
-      click_button 'submit'
+  #     click_button 'submit'
 
-      expect(page.current_path).to eq('/posts')
-      expect(page.body).to include("blog blog blog blog blog")
-    end
+  #     expect(page.current_path).to eq('/posts')
+  #     expect(page.body).to include("blog blog blog blog blog")
+  #   end
 
-  end
+  # end
 
-  describe "Read Action " do
-    describe 'index action' do
-      it 'responds with a 200 status code' do
-        get "/posts"
-        expect(last_response.status).to eq(200)
-      end
+  # describe "Read Action " do
+  #   describe 'index action' do
+  #     it 'responds with a 200 status code' do
+  #       get "/posts"
+  #       expect(last_response.status).to eq(200)
+  #     end
 
-      it "displays all the blog posts" do
-        get "/posts"
-        expect(last_response.body).to include(post_name)
-        expect(last_response.body).to include(post2.name)
-      end
-    end
+  #     it "displays all the blog posts" do
+  #       get "/posts"
+  #       expect(last_response.body).to include(post_name)
+  #       expect(last_response.body).to include(post2.name)
+  #     end
+  #   end
 
     # describe 'show action' do
     #   it 'show page responds with a 200 status code' do
@@ -65,10 +65,10 @@ describe "Blog Post App" do
     # end
 
 
-  end
+  # end
 
 
-  describe "update action" do
+  # describe "update action" do
 
 
     # it 'responds with a 200 status code' do
@@ -107,29 +107,29 @@ describe "Blog Post App" do
     #   expect(find("#hidden", :visible => false).value).to eq("patch")
     # end
 
-  end
+  # end
 
-  describe "delete action" do
+  # describe "delete action" do
 
 
-    it 'responds with a 200 status code' do
-      get "/posts/#{post2.id}"
-      expect(last_response.status).to eq(200)
-    end
+  #   it 'responds with a 200 status code' do
+  #     get "/posts/#{post2.id}"
+  #     expect(last_response.status).to eq(200)
+  #   end
 
-    it "deletes a blog post from the database" do
-      visit "/posts/#{post2.id}"
-      click_button "delete"
-      expect(Post.all.count).to eq(1)
-      expect(Post.last.name).to eq("Hello World")
-    end
+  #   it "deletes a blog post from the database" do
+  #     visit "/posts/#{post2.id}"
+  #     click_button "delete"
+  #     expect(Post.all.count).to eq(1)
+  #     expect(Post.last.name).to eq("Hello World")
+  #   end
 
-    it "submits the form via a delete request" do
-      visit "/posts/#{post2.id}"
-      expect(find("#hidden", :visible => false).value).to eq("delete")
-    end
+  #   it "submits the form via a delete request" do
+  #     visit "/posts/#{post2.id}"
+  #     expect(find("#hidden", :visible => false).value).to eq("delete")
+  #   end
 
-  end
+  # end
 
 
 
